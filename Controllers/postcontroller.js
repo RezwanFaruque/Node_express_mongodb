@@ -1,6 +1,6 @@
 // post controller
 
-const Post = require('./posts');
+const Post = require('../Models/posts');
 
 // For index (show all the post)
 exports.index = (req,res)=>{
