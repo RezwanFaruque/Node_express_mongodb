@@ -99,10 +99,10 @@ exports.update=(req,res)=>{
 
 
 // For Delete Single Post
-exports.delete = function (req, res) {
+exports.delete = (req, res)=>{
     Post.deleteOne({
         _id: req.params.postId
-    }, function (err, contact) {
+    },(err, contact)=>{
         if (err)
             res.send(err)
         res.json({
