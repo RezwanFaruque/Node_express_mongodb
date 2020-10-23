@@ -12,6 +12,11 @@ router.get('/',function(req,res){
 
 router.route('/posts').get(postController.index).post(postController.add);
 
+router.route('/posts/:postId')
+      .get(postController.view)
+      .patch(postController.update)
+      .delete(postController.delete);
+
 
 
 

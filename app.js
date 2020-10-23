@@ -21,9 +21,13 @@ const options = {useNewUrlParser: true, useUnifiedTopology: true};
 const mongo = mongoose.connect(dbpath,options)
 
 mongo.then(()=>{
+
     console.log('connected to mongodb');
-},error =>{console.log(error,'errror');}
+
+    },error =>{console.log(error,'errror');}
 )
+
+
 
 // api routers
 const apiRoute = require('./router');

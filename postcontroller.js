@@ -3,7 +3,7 @@
 const Post = require('./posts');
 
 // For index (show all the post)
-exports.index = function(req,res){
+exports.index = (req,res)=>{
     Post.get(function(err,PostModel){
         if(err){
             res.json({
@@ -20,7 +20,7 @@ exports.index = function(req,res){
 }
 
 // For Create new Post 
-exports.add = function(req,res){
+exports.add = (req,res)=>{
     let post = new Post();
     post.title = req.body.title;
     post.description = req.body.description;
@@ -28,7 +28,7 @@ exports.add = function(req,res){
 
     // save and check error
 
-    post.save(function(err){
+    post.save((err)=>{
         if(err){
             res.json({
                 status: "error",
@@ -44,6 +44,70 @@ exports.add = function(req,res){
 }
 
 // For view single Post
+exports.view=(req,res)=>{
+    Post.findById(req.params.postId,(err,PostModel)=>{
+        if(err){
+            res.json(
+                {
+                    status: "error",
+                    error: err
+
+                }
+            )
+        }
+        res.json({
+            status: "success",
+            data: PostModel,
+        })
+    })
+}
+
+// For updating single post
+exports.update=(req,res)=>{
+    Post.findById(req.params.postId,(err,PostModel)=>{
+        if(err){
+            res.json({
+                status: "error",
+                message: "Post Update failed",
+                errors: err,
+            })
+        }
+
+        PostModel.title = req.body.title;
+        PostModel.description = req.body.description;
+        PostModel.postnumber = req.body.postnumber;
+
+        PostModel.save((err)=>{
+            if(err){
+                res.json({
+                    status: "error",
+                    message: "Post Update failed",
+                    errors: err,
+                })
+            }
+
+            res.json({
+                status: "success",
+                message: "Post Update Successfuly",
+                data: PostModel,
+            })
+        })
+       
+    })
+}
+
 
 
 // For Delete Single Post
+exports.delete = function (req, res) {
+    Post.deleteOne({
+        _id: req.params.postId
+    }, function (err, contact) {
+        if (err)
+            res.send(err)
+        res.json({
+            status: "success",
+            message: 'Post Deleted'
+        })
+    })
+}
