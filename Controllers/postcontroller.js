@@ -25,6 +25,7 @@ exports.add = (req,res)=>{
     post.title = req.body.title;
     post.description = req.body.description;
     post.postnumber = req.body.postnumber;
+    post.category = req.body.category_id;
 
     // save and check error
 
