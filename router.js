@@ -26,6 +26,7 @@ router.route('/post/:postId/category').post(categoryController.add);
 
 // user routes
 router.route('/user/registration').post(UserController.register);
+router.route('/user/login').post(UserController.login);
 
 
 

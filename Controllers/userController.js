@@ -1,16 +1,17 @@
 const User = require('../Models/user');
 const bycrypt = require("bcrypt");
-const {registervalidator} = require('./validator/uservalidation');
+const {registervalidator,loginvalidator} = require('./validator/uservalidation');
 
  exports.register= async (req,res,next)=>{
 
-    console.log(req.body);
-    const {errors} = registervalidator(req.body);
+    const errors = registervalidator(req.body);
+    console.log(errors);
+    
     if(errors){
         return res.json({
             status: "error",
             message: "User Registration failed for validation issue",
-            error: errors.details[0].message,
+            error: errors.error.details[0].message,
         })
     }
 
@@ -48,4 +49,13 @@ const {registervalidator} = require('./validator/uservalidation');
     })
 
     next();
+};
+
+
+exports.login= async (req,res,next)=>{
+
+    const errors = loginvalidator(req.body);
+
+    console.log(errors);
+
 }
