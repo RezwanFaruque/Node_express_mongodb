@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const postController = require('./Controllers/postcontroller');
 const categoryController = require('./Controllers/categoryController');
+const UserController = require('./Controllers/userController');
 
 router.get('/',function(req,res){
     res.json({
@@ -22,6 +23,9 @@ router.route('/posts/:postId')
 router.route('/categories').get(categoryController.get);
 
 router.route('/post/:postId/category').post(categoryController.add);
+
+// user routes
+router.route('/user/registration').post(UserController.register);
 
 
 

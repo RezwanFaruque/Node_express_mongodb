@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/RezwanFaruque/Node_express_mongodb#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "jio": "^3.39.0",
+    "joi": "^17.3.0",
     "mongoose": "^5.10.9",
     "nodemon": "^2.0.6"
   }
