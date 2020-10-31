@@ -22,6 +22,7 @@
     "express": "^4.17.1",
     "jio": "^3.39.0",
     "joi": "^17.3.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9",
     "nodemon": "^2.0.6"
   }

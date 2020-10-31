@@ -1,6 +1,9 @@
 const User = require('../Models/user');
 const bycrypt = require("bcrypt");
-const {registervalidator,loginvalidator} = require('./validator/uservalidation');
+const {registervalidator} = require('./validator/uservalidation');
+const jwt = require("jsonwebtoken");
+const { use } = require('../router');
+
 
  exports.register= async (req,res,next)=>{
 
@@ -48,14 +51,70 @@ const {registervalidator,loginvalidator} = require('./validator/uservalidation')
         
     })
 
-    next();
+   
 };
 
 
-exports.login= async (req,res,next)=>{
+exports.login = async (req,res)=>{
 
-    const errors = loginvalidator(req.body);
+    let mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if(!req.body.email.match(mailformat)){
+        return res.json({
+            status: "error",
+            message: "Invalid mail formate",
+        })
+    }
 
-    console.log(errors);
+    if(req.body.password.length<=5){
+        return res.json({
+            status: "error",
+            message: "password should be atleast 6 charracters",
+        })
+    }
 
+    const useremail = await User.findOne({email: req.body.email});
+    if(!useremail){
+        return res.json({
+            status: "error",
+            message: "email does not exist try right one", 
+        })
+    }
+
+    const userpassword = await bycrypt.compare(req.body.password,useremail.password);
+    if(!userpassword){
+        return res.json({
+            status: "error",
+            message: "password error!",
+        })
+    }
+
+
+    console.log(process.env.TOKEN_SECRET);
+
+    const token = jwt.sign(
+        {
+        name: useremail.name,
+        id: useremail._id,
+        },
+
+        "secret",
+        {
+            expiresIn: "1h",
+        }
+    
+    )
+
+    if(useremail && userpassword){
+        return res.header("auth-token",token).json({
+            status: "success",
+            message: "Log in successfull",
+            error: null,
+            data: token
+        })
+    }
+
+   
+
+    
+   
 }
