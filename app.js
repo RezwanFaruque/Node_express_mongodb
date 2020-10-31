@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const verifytoken = require('./Controllers/validator/tokenvalidation');
 
 const app = express();
 
@@ -33,6 +34,9 @@ mongo.then(()=>{
 const apiRoute = require('./router');
 
 app.use('/api',apiRoute);
+
+// after login
+app.use('/api/dashboard',verifytoken,apiRoute);
 
 
 app.get('/',function(req , res){

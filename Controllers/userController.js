@@ -2,7 +2,11 @@ const User = require('../Models/user');
 const bycrypt = require("bcrypt");
 const {registervalidator} = require('./validator/uservalidation');
 const jwt = require("jsonwebtoken");
-const { use } = require('../router');
+const dotenv = require("dotenv");
+
+// config dotenv
+dotenv.config();
+
 
 
  exports.register= async (req,res,next)=>{
@@ -72,15 +76,15 @@ exports.login = async (req,res)=>{
         })
     }
 
-    const useremail = await User.findOne({email: req.body.email});
-    if(!useremail){
+    const user = await User.findOne({email: req.body.email});
+    if(!user){
         return res.json({
             status: "error",
             message: "email does not exist try right one", 
         })
     }
 
-    const userpassword = await bycrypt.compare(req.body.password,useremail.password);
+    const userpassword = await bycrypt.compare(req.body.password,user.password);
     if(!userpassword){
         return res.json({
             status: "error",
@@ -93,18 +97,18 @@ exports.login = async (req,res)=>{
 
     const token = jwt.sign(
         {
-        name: useremail.name,
-        id: useremail._id,
+        name: user.username,
+        id: user._id,
         },
 
-        "secret",
+        process.env.TOKEN_SECRET,
         {
             expiresIn: "1h",
         }
     
     )
 
-    if(useremail && userpassword){
+    if(user && userpassword){
         return res.header("auth-token",token).json({
             status: "success",
             message: "Log in successfull",
@@ -112,9 +116,6 @@ exports.login = async (req,res)=>{
             data: token
         })
     }
-
-   
-
     
    
 }
