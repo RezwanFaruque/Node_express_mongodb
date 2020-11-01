@@ -30,7 +30,12 @@ let postSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: "CategoryModel",
         
-    }
+    },
+
+    comments:[{
+        type: Schema.Types.ObjectId,
+        ref: "CommentsModel",
+    }]
 
 
 });
