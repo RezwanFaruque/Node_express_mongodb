@@ -4,6 +4,7 @@ const postController = require('./Controllers/postcontroller');
 const categoryController = require('./Controllers/categoryController');
 const UserController = require('./Controllers/userController');
 const DashboardController = require('./Controllers/dashboardController');
+const CommentsController = require('./Controllers/commentsController');
 
 
 router.get('/',function(req,res){
@@ -25,6 +26,8 @@ router.route('/posts/:postId')
 router.route('/categories').get(categoryController.get);
 
 router.route('/post/:postId/category').post(categoryController.add);
+// comments route
+router.route('/post/:postId/comments').post(CommentsController.add);
 
 // user routes
 router.route('/user/registration').post(UserController.register);
