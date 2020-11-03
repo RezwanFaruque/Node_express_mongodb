@@ -17,8 +17,10 @@ router.get('/',function(req,res){
 
 router.route('/posts').get(postController.index).post(postController.add);
 
+router.route('/posts/:postTitle')
+      .get(postController.view);
+
 router.route('/posts/:postId')
-      .get(postController.view)
       .patch(postController.update)
       .delete(postController.delete);
 
@@ -28,6 +30,7 @@ router.route('/categories').get(categoryController.get);
 router.route('/post/:postId/category').post(categoryController.add);
 // comments route
 router.route('/post/:postId/comments').post(CommentsController.add);
+router.route('/post/:postId/comment/:commentId').patch(CommentsController.update);
 
 // user routes
 router.route('/user/registration').post(UserController.register);

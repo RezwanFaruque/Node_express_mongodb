@@ -45,22 +45,22 @@ exports.add = (req,res)=>{
 }
 
 // For view single Post
-exports.view=(req,res)=>{
-    Post.findById(req.params.postId,(err,PostModel)=>{
-        if(err){
-            res.json(
-                {
-                    status: "error",
-                    error: err
+exports.view= async (req,res)=>{
+    let post = await Post.findOne({title:req.params.postTitle}).populate('comments');
 
-                }
-            )
-        }
-        res.json({
-            status: "success",
-            data: PostModel,
+    if(!post){
+        return res.json({
+            status: "error",
+            message: "Post with does not exist"
         })
-    })
+    }
+    if(post){
+       return res.json({
+            status: "success",
+            message: "post found",
+            data: post,
+        })
+    }
 }
 
 // For updating single post
@@ -112,3 +112,4 @@ exports.delete = (req, res)=>{
         })
     })
 }
+
