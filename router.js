@@ -5,6 +5,7 @@ const categoryController = require('./Controllers/categoryController');
 const UserController = require('./Controllers/userController');
 const DashboardController = require('./Controllers/dashboardController');
 const CommentsController = require('./Controllers/commentsController');
+const QuestionController = require('./Controllers/QuestionController');
 
 
 router.get('/',function(req,res){
@@ -35,13 +36,17 @@ router.route('/post/:postId/comment/:commentId').patch(CommentsController.update
 // user routes
 router.route('/user/registration').post(UserController.register);
 router.route('/user/login').post(UserController.login);
-
+// user question submit api
+router.route('/user/question/:qId').post(QuestionController.submitanswer);
 
 
 // dashboard afterlogin
 router.route('/home').get(DashboardController.get);
 
 
+
+// Admin panel exam router
+router.route('/admin/questions').post(QuestionController.add);
 
 
 module.exports=router;
