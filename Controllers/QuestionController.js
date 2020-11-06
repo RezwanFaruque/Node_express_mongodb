@@ -14,8 +14,9 @@ exports.add = async (req,res)=>{
   queston.answer_three = req.body.answer_three;
   queston.answer_four = req.body.answer_four;
 
+  
     const salt = await bycrypt.genSalt(10);
-    const c_answer = await  bycrypt.hash(req.body.c_answer,salt);
+    const c_answer = await  bycrypt.hash(req.body.c_answer.replace(/\s+/g, ''),salt);
     queston.correct_answer = c_answer;
 
   queston.save((err)=>{
@@ -42,7 +43,7 @@ exports.submitanswer = async (req,res)=>{
     Question.findById(req.params.qId, async (err,question)=>{
         
 
-        const submit_answer = req.body.submit_answer;
+        const submit_answer = req.body.submit_answer.replace(/\s+/g, '');
 
         const correct_submit = await bycrypt.compare(submit_answer,question.correct_answer);
 

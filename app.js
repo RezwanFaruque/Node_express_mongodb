@@ -43,7 +43,7 @@ app.get('/',function(req , res){
     res.send('Node js express server is running');
 })
 
-app.listen('3000',function(){
+app.listen('3001',function(){
     console.log('server started at port 3000!!');
 })
 
