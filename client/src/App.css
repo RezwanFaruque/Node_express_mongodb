@@ -1,38 +1,25 @@
-.App {
-  text-align: center;
+.brand-name{
+  color: #ffff;
+  font-size: 22px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bannar-section{
+  width: 100%;
+  height: calc(70vh);
+  background-image: url(../src/images/h1_hero.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.bannar-about-us-link{
   color: white;
+  text-decoration: none;
+
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bannar-about-us-link:hover{
+  text-decoration: none;
+  color: white;
 }
