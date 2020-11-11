@@ -4,13 +4,71 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
+.logo-main{
+  width: auto;
+  height: 60px;
+  margin-right: 30px;
+
+}
+
+.bannar-left-middle{
+  display: flex;
+  align-items: center;
+}
+
+.bannar-person{
+  width: calc(70vh);
+  height: calc(70vh);
+
+}
+
+.navbar-brand{
+  color: white;
+  font-size: 24px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  letter-spacing: 5px;
+
+}
+
+.navbar-collapse ul li a{
+  font-size: 19px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+  letter-spacing: 3px;
+}
+
+body{
+  background-color: #0a192f;
+}
+
+.title{
+    font-size: 24px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    line-height: 35px;
+    letter-spacing: 4px;
+    font-family: sans-serif;
+    color: white;
+}
+
+.sub-title{
+  font-size: 32px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+  line-height: 33px;
+  letter-spacing: 5px;
+}
 .bannar-section{
+  display: flex;
+  align-items: center;
   width: 100%;
   height: calc(70vh);
-  background-image: url(../src/images/h1_hero.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-color: #041f48;
+  
+}
+
+.bg-dark{
+  background-color: rgba(6, 44, 102, 0.7)!important;
 }
 
 .bannar-about-us-link{
@@ -22,4 +80,17 @@
 .bannar-about-us-link:hover{
   text-decoration: none;
   color: white;
+}
+
+.bannar-about-us-link{
+  text-transform: uppercase;
+  font-size: 25px;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 4px;
+}
+
+.btn-outline-primary:hover {
+  
+  background-color: unset;
+  border-color: unset;
 }
